@@ -86,16 +86,16 @@ void WumpusPack::addMonsterToPack(WumpusComponent *other)
 string WumpusPack::moveTo(int pos)
 {
     ostringstream salida;
-    for (auto w : wumpuses)
-        salida << w.moveTo(pos);
+    for (auto w : children)
+        salida << w->moveTo(pos);
     return salida.str();
 }
 
 string WumpusPack::attackPlayer()
 {
     ostringstream salida;
-    for (auto w : wumpuses)
-        return w.attackPlayer();
+    for (auto w : children)
+        return w->attackPlayer();
     return salida.str();
 }
 

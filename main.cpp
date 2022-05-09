@@ -1,41 +1,59 @@
 #include <iostream>
 using namespace std;
 
-#include "Neuron_p.h"
-#include "NeuronLayer_p.h"
 
-int main() {
-	Neuron n1, n2;
-	NeuronLayer nl1(3), nl2(3);
+#include "Wumpus.h"
+#include "WumpusPack.h"
 
-	n1.connect_to< Neuron >(n2);
-	n1.connect_to< NeuronLayer>(nl1);
-	nl2.connect_to< Neuron >(n2);
-	nl1.connect_to< NeuronLayer>(nl2);
 
-	cout << "**** INICIO ****" << endl;
-	cout << n1.toString() << endl; // 0 in sal 1 2 3 4
-	cout << n2.toString() << endl; // 1 in 0
-	cout << nl1.toString() << endl;
-	cout << nl2.toString() << endl;
+int main() 
+{
+    cout << 1.0;
+    Wumpus w0, w1, w2;
+    cout << 2.0;
+    WumpusPack wp0, wp1;
+    
+    // // Cadejos c0, c1, c2;    
+    // // CadejosPack cp0, cp1;
+
+    w0.addMonsterToPack(&wp0);
+    w1.addMonsterToPack(&wp0);
+    wp1.addMonsterToPack(&w2);
+
+    // cp0.add(&c0);
+    // cp0.add(&c1);
+    // c2.add(&cp1);
+
+
+    // doesn't work
+    // w0.add(&c0);
+    // wp0.add(&c1);
+    // c1.add(&w0);
+    // cp1.add(&w1);
+
+    cout << "**** INICIO ****" << endl;
+	cout << w0.toString() << endl;
+	cout << w1.toString() << endl;
+    cout << w2.toString() << endl;
+    cout << wp0.toString() << endl;
+	cout << wp1.toString() << endl;
+    cout << wp1.moveTo(3) << endl;
+    cout << w0.moveTo(2) << endl;
+    cout << wp0.attackPlayer() << endl;
+    cout << w1.attackPlayer() << endl;
+
+    
+    // // cout << c0.toString() << endl;
+	// // cout << c1.toString() << endl;
+    // // cout << c2.toString() << endl;
+    // // cout << cp0.toString() << endl;
+	// // cout << cp1.toString() << endl;
 	cout << "**** FIN ****" << endl;
 	cin.ignore();
+
+
 }
-
 /*
-0 in {} out {1,}
-1 in {0,} out {}
-2 in {} out {}
-3 in {} out {}
-4 in {} out {}
-5 in {} out {}
-6 in {} out {}
-7 in {} out {}
-
-capa 0
-
-capa 1
-
 **** INICIO ****
 Neurona id: 0
 ids entrantes: 
@@ -71,7 +89,7 @@ ids salientes:
 5,6,7,
 
 
-Capa neuronal id: 0
+Capa neuronal id: 1
 Neurona id: 5
 ids entrantes: 
 2,3,4,
