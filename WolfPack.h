@@ -3,107 +3,33 @@
 using namespace std;
 
 #include "Wolf.h"
-#include "MonsterComponent.h"
+#include "MonsterPack.h"
 
 class Wolf;
 
-class WolfPack : public MonsterComponent
+class WolfPack : public MonsterPack
 {
 public:
+    WolfPack();
+    ~WolfPack();
 
-	WolfPack();
-	~WolfPack();
-
-	unsigned int gId();
-	Wolf* begin() override;
-	Wolf* end() override;
-	Wolf* next() override;
-	void addMonsterToPack(MonsterComponent *other) override;
-	string moveTo(int pos) override;
-    string attackPlayer() override;
-	string toString() override;
-
-private:
-	static unsigned int idg;
-
-	int id;
-	vector< Wolf > Wolfes;
-	vector<Wolf*> children;
-	int pos;
-	Wolf* cursor;
+    string toString() override;
 };
 
-// Definición de variables static:
-unsigned int WolfPack::idg = 0;
+WolfPack::WolfPack(){}
 
-WolfPack::WolfPack()
-{
-	this->id = WolfPack::idg++;
-
-		
-	pos = 0;
-	cursor = &Wolfes[pos];
-}
-
-WolfPack::~WolfPack()
-{
-}
-
-unsigned int WolfPack::gId()
-{
-	return id;
-}
-
-
-Wolf* WolfPack::begin()
-{
-	pos = 0;
-	cursor = &Wolfes[pos];
-	return cursor;
-}
-
-Wolf* WolfPack::end()
-{
-	return 0;
-}
-
-Wolf* WolfPack::next()
-{
-	if (pos < Wolfes.size() - 1) {
-		pos++;
-		cursor = &Wolfes[pos];
-	}
-	else cursor = 0;
-	return cursor;
-}
-
-void WolfPack::addMonsterToPack(MonsterComponent *other)
-{
-	auto w = static_cast<Wolf *>(other);
-	children.push_back(w);
-}
-
-string WolfPack::moveTo(int pos)
-{
-    ostringstream salida;
-    for (auto w : children)
-        salida << w->moveTo(pos);
-    return salida.str();
-}
-
-string WolfPack::attackPlayer()
-{
-    ostringstream salida;
-    for (auto w : children)
-        return w->attackPlayer();
-    return salida.str();
-}
+WolfPack::~WolfPack(){}
 
 string WolfPack::toString()
 {
-	ostringstream salida;
-	salida << "Manada de Wolf #" << id << endl;
-	for (auto n : children)
-		salida << n->toString();
-	return salida.str();
+    ostringstream salida;
+    salida << "Manada de lobos #" << this->gId() << endl;
+    Wolf *w = static_cast<Wolf*>(this->begin());
+    while (w != 0)
+    {
+        salida << w->toString();
+        w = static_cast<Wolf*>(this->next());
+    }
+
+    return salida.str();
 }

@@ -21,7 +21,7 @@ public:
 	void addMonsterToPack(MonsterComponent *other) override;
 	string moveTo(int pos) override;
     string attackPlayer() override;
-	string toString() override;
+	virtual string toString() = 0;
 
 private:
 	static unsigned int idg;
@@ -42,7 +42,7 @@ MonsterPack::MonsterPack()
 
 		
 	pos = 0;
-	cursor = &Monsteres[pos];
+	cursor = nullptr;
 }
 
 MonsterPack::~MonsterPack()
@@ -58,7 +58,7 @@ unsigned int MonsterPack::gId()
 Monster* MonsterPack::begin()
 {
 	pos = 0;
-	cursor = &Monsteres[pos];
+	cursor = children[pos];
 	return cursor;
 }
 
@@ -69,9 +69,9 @@ Monster* MonsterPack::end()
 
 Monster* MonsterPack::next()
 {
-	if (pos < Monsteres.size() - 1) {
+	if (pos < children.size() - 1) {
 		pos++;
-		cursor = &Monsteres[pos];
+		cursor = children[pos];
 	}
 	else cursor = 0;
 	return cursor;
