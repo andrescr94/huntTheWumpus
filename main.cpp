@@ -4,21 +4,25 @@ using namespace std;
 
 #include "Wumpus.h"
 #include "WumpusPack.h"
-
+#include "Cadejos.h"
+#include "CadejosPack.h"
 
 int main() 
 {
-    cout << 1.0;
     Wumpus w0, w1, w2;
-    cout << 2.0;
     WumpusPack wp0, wp1;
-    
-    // // Cadejos c0, c1, c2;    
-    // // CadejosPack cp0, cp1;
-
     w0.addMonsterToPack(&wp0);
     w1.addMonsterToPack(&wp0);
     wp1.addMonsterToPack(&w2);
+
+    
+    Cadejos c0, c1, c2;    
+    CadejosPack cp0, cp1;
+
+    c0.addMonsterToPack(&cp1);
+    c1.addMonsterToPack(&cp1);
+    cp0.addMonsterToPack(&c2);
+
 
     // cp0.add(&c0);
     // cp0.add(&c1);
@@ -43,11 +47,15 @@ int main()
     cout << w1.attackPlayer() << endl;
 
     
-    // // cout << c0.toString() << endl;
-	// // cout << c1.toString() << endl;
-    // // cout << c2.toString() << endl;
-    // // cout << cp0.toString() << endl;
-	// // cout << cp1.toString() << endl;
+    cout << c0.toString() << endl;
+	cout << c1.toString() << endl;
+    cout << c2.toString() << endl;
+    cout << cp0.toString() << endl;
+	cout << cp1.toString() << endl;
+    cout << cp1.moveTo(3) << endl;
+    cout << c0.moveTo(2) << endl;
+    cout << cp0.attackPlayer() << endl;
+    cout << c1.attackPlayer() << endl;
 	cout << "**** FIN ****" << endl;
 	cin.ignore();
 
