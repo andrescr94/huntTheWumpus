@@ -9,6 +9,7 @@ using namespace std;
 #include "WolfPack.h"
 #include "InvisibleMonster.h"
 #include "ReplicableMonster.h"
+#include "MonsterMemory.h"
 int main()
 {
     cout << "**** INICIO ****" << endl;
@@ -50,13 +51,18 @@ int main()
     cout << c1.attackPlayer() << endl;
 
     cout << "Añadiendo invisibilidad a manada 0 y wumpus 2" << endl;
-    InvisibleMonster invisibleManada{wp0};
-    cout << invisibleManada.toString();
+    InvisibleMonster invisiblePack0{wp0};
+    cout << invisiblePack0.toString();
     InvisibleMonster invisibleWumpus{w2};
     cout << invisibleWumpus.toString();
-    cout << "añadiendo replicabilidad a la manada 0 y wumpus 2" << endl;
-    ReplicableMonster transparentReplicableWumpus{invisibleWumpus};
-    cout << transparentReplicableWumpus.toString();
+
+    cout << "añadiendo replicabilidad a la manada 0 " << endl;
+    ReplicableMonster transparentReplicableWumpus{invisiblePack0};
+    cout << invisiblePack0.toString();
+
+    cout << "Añadiendo memoria a la manada 0 y la manada 1" << endl;
+    MonsterMemory transparentReplicableMemoryPack{invisiblePack0};
+
     cout << "**** FIN ****" << endl;
     cin.ignore();
 }
