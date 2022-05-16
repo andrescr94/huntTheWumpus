@@ -7,7 +7,8 @@ using namespace std;
 #include "CadejosPack.h"
 #include "Wolf.h"
 #include "WolfPack.h"
-
+#include "InvisibleMonster.h"
+#include "ReplicableMonster.h"
 int main()
 {
     cout << "**** INICIO ****" << endl;
@@ -48,24 +49,14 @@ int main()
     cout << cp0.attackPlayer() << endl;
     cout << c1.attackPlayer() << endl;
 
-    cout << "**** Lobos ****" << endl;
-    Wolf l0, l1, l2;
-    WolfPack mp0, mp1;
-
-    l0.addMonsterToPack(&mp1);
-    l1.addMonsterToPack(&mp1);
-    mp0.addMonsterToPack(&l2);
-
-    cout << l0.toString() << endl;
-    cout << l1.toString() << endl;
-    cout << l2.toString() << endl;
-    cout << mp0.toString() << endl;
-    cout << mp1.toString() << endl;
-    cout << mp1.moveTo(3) << endl;
-    cout << l0.moveTo(2) << endl;
-    cout << mp0.attackPlayer() << endl;
-    cout << l1.attackPlayer() << endl;
-
+    cout << "Añadiendo invisibilidad a manada 0 y wumpus 2" << endl;
+    InvisibleMonster invisibleManada{wp0};
+    cout << invisibleManada.toString();
+    InvisibleMonster invisibleWumpus{w2};
+    cout << invisibleWumpus.toString();
+    cout << "añadiendo replicabilidad a la manada 0 y wumpus 2" << endl;
+    ReplicableMonster transparentReplicableWumpus{invisibleWumpus};
+    cout << transparentReplicableWumpus.toString();
     cout << "**** FIN ****" << endl;
     cin.ignore();
 }

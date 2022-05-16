@@ -68,7 +68,6 @@ Monster *Monster::next()
 
 void Monster::addMonsterToPack(MonsterComponent *other)
 {
-	// auto w = static_cast<MonsterPack *>(other);
 	other->addMonsterToPack(this);
 }
 
