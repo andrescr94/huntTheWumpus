@@ -56,13 +56,15 @@ int main()
     InvisibleMonster invisibleWumpus{w2};
     cout << invisibleWumpus.toString();
 
+    ReplicableMonster wumpusInvisibleReplicable{w2};
+    cout << wumpusInvisibleReplicable.toString();
     cout << "añadiendo replicabilidad a la manada 0 " << endl;
     ReplicableMonster transparentReplicableWumpus{invisiblePack0};
-    cout << invisiblePack0.toString();
+    cout << transparentReplicableWumpus.toString();
 
     cout << "Añadiendo memoria a la manada 0 y la manada 1" << endl;
-    MonsterMemory transparentReplicableMemoryPack{invisiblePack0};
-
+    MonsterMemory transparentReplicableMemoryPack{transparentReplicableWumpus};
+    cout << transparentReplicableMemoryPack.toString();
     cout << "**** FIN ****" << endl;
     cin.ignore();
 }
